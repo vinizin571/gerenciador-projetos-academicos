@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block titulo %}Projetos{% endblock %}
+{% block conteudo %}
+  <h2>Todos os projetos</h2>
+  <div class="cards">
+    {% for id, p in projetos.items() %}
+      <article class="card">
+        <h3>{{ p.titulo }}</h3>
+        <p><strong>Disciplina:</strong> {{ p.disciplina }}</p>
+        <p><span class="status">{{ p.status }}</span></p>
+        <a href="{{ url_for('projeto', id=id) }}">Ver detalhes</a>
+      </article>
+    {% endfor %}
+  </div>
+{% endblock %}
