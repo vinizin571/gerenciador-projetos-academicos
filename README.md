@@ -40,6 +40,7 @@ Acesse `http://127.0.0.1:5000` no navegador.
 
 ## Integrantes
 
-- Nome 1
-- Nome 2
-- Nome 3
+- Vinicius Barbosa Rezende Nogueira - 2607370
+- Pedro Herique Lopes Batista - 2604184
+- Guilherme Dos Santos Saraiva Virginio - 2612442
+- Otávio Luiz Rodrigues Norberto - 2601946
