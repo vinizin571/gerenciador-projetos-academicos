@@ -4,12 +4,35 @@
   <h2>{{ projeto.titulo }}</h2>
   <p>{{ projeto.descricao }}</p>
   <ul>
-    <li><strong>Disciplina:</strong>
-      <a href="{{ url_for('disciplina', nome=projeto.disciplina) }}">{{ projeto.disciplina }}</a>
-    </li>
+    <li><strong>Disciplina:</strong> {{ projeto.disciplina or "Sem disciplina" }}</li>
     <li><strong>Status:</strong> {{ projeto.status }}</li>
     <li><strong>Prazo:</strong> {{ projeto.prazo }}</li>
-    <li><strong>Integrantes:</strong> {{ projeto.integrantes | join(", ") }}</li>
   </ul>
-  <a href="{{ url_for('index') }}">← Voltar</a>
+
+  <h3>Integrantes</h3>
+  <ul>
+    {% for i in integrantes %}
+      <li>
+        {{ i.nome }}
+        <form method="post" action="{{ url_for('integrante_excluir', pid=projeto.id, iid=i.id) }}" style="display:inline">
+          <button type="submit">Remover</button>
+        </form>
+      </li>
+    {% else %}
+      <li>Nenhum integrante.</li>
+    {% endfor %}
+  </ul>
+  <form method="post" action="{{ url_for('integrante_novo', id=projeto.id) }}">
+    <input type="text" name="nome" placeholder="Nome do integrante" required>
+    <button type="submit">Adicionar</button>
+  </form>
+
+  <p>
+    <a href="{{ url_for('projeto_editar', id=projeto.id) }}">Editar projeto</a> |
+    <a href="{{ url_for('index') }}">← Voltar</a>
+  </p>
+  <form method="post" action="{{ url_for('projeto_excluir', id=projeto.id) }}"
+        onsubmit="return confirm('Excluir este projeto e seus integrantes?')">
+    <button type="submit">Excluir projeto</button>
+  </form>
 {% endblock %}

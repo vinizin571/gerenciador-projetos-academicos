@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block titulo %}{{ "Editar" if projeto else "Novo" }} projeto{% endblock %}
+{% block conteudo %}
+  <h2>{{ "Editar projeto" if projeto else "Novo projeto" }}</h2>
+  <form method="post">
+    <p>
+      <label>Título<br>
+      <input type="text" name="titulo" value="{{ projeto.titulo if projeto else '' }}" required></label>
+    </p>
+    <p>
+      <label>Descrição<br>
+      <textarea name="descricao" rows="4" cols="40">{{ projeto.descricao if projeto and projeto.descricao else '' }}</textarea></label>
+    </p>
+    <p>
+      <label>Status<br>
+      <select name="status">
+        {% for s in status_opcoes %}
+          <option value="{{ s }}" {% if projeto and projeto.status == s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select></label>
+    </p>
+    <p>
+      <label>Prazo<br>
+      <input type="date" name="prazo" value="{{ projeto.prazo if projeto and projeto.prazo else '' }}"></label>
+    </p>
+    <p>
+      <label>Disciplina<br>
+      <select name="disciplina_id">
+        <option value="">Sem disciplina</option>
+        {% for d in disciplinas %}
+          <option value="{{ d.id }}" {% if projeto and projeto.disciplina_id == d.id %}selected{% endif %}>{{ d.nome }}</option>
+        {% endfor %}
+      </select></label>
+    </p>
+    <button type="submit">Salvar</button>
+    <a href="{{ url_for('index') }}">Cancelar</a>
+  </form>
+{% endblock %}

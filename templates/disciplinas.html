@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block titulo %}Disciplinas{% endblock %}
+{% block conteudo %}
+  <h2>Disciplinas</h2>
+  {% if erro %}<p style="color:#b00020">{{ erro }}</p>{% endif %}
+  <ul>
+    {% for d in disciplinas %}
+      <li>
+        <a href="{{ url_for('disciplina', nome=d.nome) }}">{{ d.nome }}</a>
+        <form method="post" action="{{ url_for('disciplina_excluir', id=d.id) }}" style="display:inline"
+              onsubmit="return confirm('Excluir a disciplina? Os projetos ficarão sem disciplina.')">
+          <button type="submit">Excluir</button>
+        </form>
+      </li>
+    {% else %}
+      <li>Nenhuma disciplina cadastrada.</li>
+    {% endfor %}
+  </ul>
+  <form method="post">
+    <input type="text" name="nome" placeholder="Nova disciplina" required>
+    <button type="submit">Adicionar</button>
+  </form>
+{% endblock %}

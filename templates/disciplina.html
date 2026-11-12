@@ -4,8 +4,8 @@
   <h2>Projetos de {{ nome }}</h2>
   {% if projetos %}
     <ul>
-      {% for id, p in projetos.items() %}
-        <li><a href="{{ url_for('projeto', id=id) }}">{{ p.titulo }}</a> ({{ p.status }})</li>
+      {% for p in projetos %}
+        <li><a href="{{ url_for('projeto', id=p.id) }}">{{ p.titulo }}</a> ({{ p.status }})</li>
       {% endfor %}
     </ul>
   {% else %}
