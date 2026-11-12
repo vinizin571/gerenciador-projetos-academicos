@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %}{{ nome }}{% endblock %}
+{% block conteudo %}
+  <h2>Projetos de {{ nome }}</h2>
+  {% if projetos %}
+    <ul>
+      {% for id, p in projetos.items() %}
+        <li><a href="{{ url_for('projeto', id=id) }}">{{ p.titulo }}</a> ({{ p.status }})</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Nenhum projeto encontrado nesta disciplina.</p>
+  {% endif %}
+{% endblock %}

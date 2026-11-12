@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block titulo %}{{ projeto.titulo }}{% endblock %}
+{% block conteudo %}
+  <h2>{{ projeto.titulo }}</h2>
+  <p>{{ projeto.descricao }}</p>
+  <ul>
+    <li><strong>Disciplina:</strong>
+      <a href="{{ url_for('disciplina', nome=projeto.disciplina) }}">{{ projeto.disciplina }}</a>
+    </li>
+    <li><strong>Status:</strong> {{ projeto.status }}</li>
+    <li><strong>Prazo:</strong> {{ projeto.prazo }}</li>
+    <li><strong>Integrantes:</strong> {{ projeto.integrantes | join(", ") }}</li>
+  </ul>
+  <a href="{{ url_for('index') }}">← Voltar</a>
+{% endblock %}
