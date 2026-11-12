@@ -44,3 +44,10 @@ Acesse `http://127.0.0.1:5000` no navegador.
 - Pedro Herique Lopes Batista - 2604184
 - Guilherme Dos Santos Saraiva Virginio - 2612442
 - Otávio Luiz Rodrigues Norberto - 2601946
+
+## Modelo de dados
+
+![DER](docs/DER.png)
+
+- Uma disciplina tem vários projetos (`ON DELETE SET NULL`)
+- Um projeto tem vários integrantes (`ON DELETE CASCADE`)
